@@ -1,0 +1,30 @@
+name: ci
+
+# Bez paths-ignore: job `check` jest required checkiem, a pominiety workflow = deadlock PR-a z samymi docs.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: shellcheck (severity error)
+        run: shellcheck -S error scripts/*.sh install.sh
+      - name: test-settings-merge
+        run: bash scripts/test-settings-merge.sh
+      - name: settings.json valid JSON
+        run: python3 -m json.tool settings.json >/dev/null
+      - name: project-template/settings.json valid JSON
+        run: python3 -m json.tool project-template/settings.json >/dev/null
+      - name: hooki z settings.json istnieja w scripts/
+        run: |
+          missing=0
+          for name in $(grep -o '~/\.claude/scripts/[A-Za-z0-9._-]*' settings.json | sed 's#.*/##' | sort -u); do
+            [ -f "scripts/$name" ] || { echo "brak scripts/$name"; missing=1; }
+          done
+          exit $missing

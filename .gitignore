@@ -1,0 +1,3 @@
+# Nie commituj danych sesji ani cache
+*.local.*
+.claude/worktrees/

@@ -1,0 +1,4 @@
+{
+  "attachmentFolderPath": "wiki/research/assets",
+  "userIgnoreFilters": ["node_modules/", "vendor/", ".git/", "target/", "dist/", "build/", ".venv/", "__pycache__/"]
+}
