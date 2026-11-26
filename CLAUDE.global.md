@@ -273,3 +273,9 @@ Reguly:
 - Unlumen premium: klucz do `.env.local` jako `UNLUMEN_LICENSE_KEY`, wpis `@unlumen` zmienia sie wtedy na forme obiektowa z naglowkiem `Authorization: Bearer ${UNLUMEN_LICENSE_KEY}`. Bez zakupu zostaw forme stringowa — pusty token psuje tez pobieranie darmowych.
 
 
+## Design UI i logo (standard dla wszystkich projektow)
+- Uzytkownik nie wpisuje /komend. Przy kazdej pracy nad wygladem (strona, sekcja, komponent, dashboard, landing, kolory, fonty, uklad) Claude SAM wywoluje skill przez Skill tool, bez pytania. Hook `design-gate.sh` (UserPromptSubmit) przypomina, ale nie zastepuje tej reguly.
+- Glowny plugin do designu UI: `unslop` (skill `unslop:unslop`). Przeglad, poprawka albo redesign ekranu idzie najpierw przez niego.
+- Pozostale skille go wspieraja: `frontend-design` przy budowie nowego UI od zera (potem przebieg `unslop`), `ui-registries` po gotowe komponenty shadcn, `web-design-guidelines` i `accessibility-a11y` do audytu, `awwwards-animations` / `gsap-master` do ruchu.
+- Logo, znak, favicon, ikona aplikacji, identyfikacja wizualna: skill `logo-design:logo-design` (plugin `logo-design@logo-design-skill`, biblioteka 1400+ SVG, skrypty audytu i eksportu).
+- Snapshot strony i story video w `unslop` wymagaja Playwright w projekcie (`npm i -D playwright`) i ffmpeg.

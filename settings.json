@@ -160,6 +160,11 @@
             "type": "command",
             "command": "bash ~/.claude/scripts/answer-gate.sh",
             "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/scripts/design-gate.sh",
+            "timeout": 5000
           }
         ]
       }
@@ -176,7 +181,9 @@
     "playground@claude-plugins-official": true,
     "humanizer@humanizer": true,
     "watch@claude-watch": true,
-    "stripe@claude-plugins-official": false
+    "stripe@claude-plugins-official": false,
+    "unslop@heydamir": true,
+    "logo-design@logo-design-skill": true
   },
   "extraKnownMarketplaces": {
     "humanizer": {
@@ -189,6 +196,18 @@
       "source": {
         "source": "github",
         "repo": "taoufik123-collab/claude-watch"
+      }
+    },
+    "heydamir": {
+      "source": {
+        "source": "github",
+        "repo": "heydamir/unslop"
+      }
+    },
+    "logo-design-skill": {
+      "source": {
+        "source": "github",
+        "repo": "kaankiziltug/logo-design-skill"
       }
     }
   },
